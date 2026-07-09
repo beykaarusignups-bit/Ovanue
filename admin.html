@@ -1,18 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>OVANUE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+<title>OVANUE Admin</title>
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
 </head>
+
 <body>
+
+<div class="admin">
+
+    <aside class="sidebar">
+
+        <h2>OVANUE</h2>
+
+        <nav>
+
+            <a href="#" class="active">Dashboard</a>
+
+            <a href="#">Products</a>
+
+            <a href="#">Collections</a>
+
+            <a href="#">Journal</a>
+
+            <a href="#">Homepage</a>
+
+            <a href="#">Orders</a>
+
+            <a href="#">Settings</a>
+
+            <a href="login.html">Logout</a>
+
+        </nav>
+
+    </aside>
+
+    <main class="admin-content">
+
+        <h1>Dashboard</h1>
+
+        <div class="admin-cards">
+
+            <div class="admin-card">
+                <h3>Total Products</h3>
+                <p id="totalProducts">0</p>
+            </div>
+
+            <div class="admin-card">
+                <h3>Total Articles</h3>
+                <p id="totalArticles">0</p>
+            </div>
+
+            <div class="admin-card">
+                <h3>Total Orders</h3>
+                <p id="totalOrders">0</p>
+            </div>
+
+            <div class="admin-card">
+                <h3>Total Revenue</h3>
+                <p>$0</p>
+            </div>
+
+        </div>
+
+        <div id="adminContainer">
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/admin.js"></script>
 
 </body>
 
-<script src="js/app.js"></script>
 </html>
