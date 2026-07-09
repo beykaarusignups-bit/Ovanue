@@ -862,3 +862,116 @@ body{
 
     font-size:14px;
 }
+/* ADMIN */
+
+.admin{
+
+display:grid;
+
+grid-template-columns:260px 1fr;
+
+min-height:100vh;
+
+}
+
+.sidebar{
+
+background:#171311;
+
+color:white;
+
+padding:40px 25px;
+
+}
+
+.sidebar h2{
+
+letter-spacing:8px;
+
+font-weight:300;
+
+margin-bottom:50px;
+
+}
+
+.sidebar nav{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.sidebar a{
+
+padding:15px 0;
+
+color:#d6d6d6;
+
+transition:.3s;
+
+}
+
+.sidebar a:hover,
+
+.sidebar .active{
+
+color:white;
+
+}
+
+.admin-content{
+
+padding:50px;
+
+background:#f7f3ed;
+
+}
+
+.admin-content h1{
+
+font-size:46px;
+
+font-weight:300;
+
+margin-bottom:40px;
+
+}
+
+.admin-cards{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+margin-bottom:50px;
+
+}
+
+.admin-card{
+
+background:white;
+
+padding:30px;
+
+}
+
+.admin-card h3{
+
+font-size:14px;
+
+letter-spacing:2px;
+
+margin-bottom:15px;
+
+}
+
+.admin-card p{
+
+font-size:42px;
+
+font-weight:300;
+
+}
