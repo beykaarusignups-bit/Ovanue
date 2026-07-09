@@ -450,3 +450,75 @@ body{
 
     line-height:1.4;
 }
+
+/* NEWSLETTER */
+
+.newsletter{
+
+    padding:140px 60px;
+
+    text-align:center;
+
+    background:#EFE7DD;
+}
+
+.newsletter h2{
+
+    font-size:54px;
+
+    font-weight:300;
+
+    line-height:1.3;
+
+    margin:25px 0 50px;
+}
+
+.newsletter-form{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+}
+
+.newsletter-form input{
+
+    width:420px;
+
+    height:58px;
+
+    padding:0 20px;
+
+    border:1px solid #d7cfc4;
+
+    background:white;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+.newsletter-form button{
+
+    height:58px;
+
+    padding:0 35px;
+
+    border:none;
+
+    background:#171311;
+
+    color:white;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.newsletter-form button:hover{
+
+    background:#000;
+}
