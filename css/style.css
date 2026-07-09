@@ -1,1 +1,94 @@
+body{
 
+    background:#F6F1E9;
+    color:#1F1A17;
+
+    font-family:
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+
+/* Announcement */
+
+.announcement-bar{
+
+    height:34px;
+
+    background:#1A1512;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+
+/* Navigation */
+
+.navbar{
+
+    height:82px;
+
+    border-bottom:1px solid #e8dfd2;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 60px;
+
+    background:#F6F1E9;
+}
+
+.nav-left,
+.nav-right{
+
+    display:flex;
+
+    gap:42px;
+
+    align-items:center;
+
+}
+
+.nav-left a,
+.nav-right a{
+
+    font-size:14px;
+
+    letter-spacing:3px;
+
+    color:#6d6358;
+
+    text-transform:uppercase;
+
+    transition:.3s;
+}
+
+.nav-left a:hover,
+.nav-right a:hover{
+
+    color:#000;
+}
+
+.logo{
+
+    font-size:28px;
+
+    letter-spacing:10px;
+
+    font-weight:300;
+}
