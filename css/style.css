@@ -733,3 +733,46 @@ body{
 
     cursor:pointer;
 }
+/* SEARCH */
+
+.search-page{
+
+    padding:80px 60px 120px;
+
+}
+
+.search-page h1{
+
+    font-size:64px;
+
+    font-weight:300;
+
+    margin-bottom:40px;
+
+}
+
+#searchInput{
+
+    width:100%;
+
+    height:62px;
+
+    padding:0 25px;
+
+    border:1px solid #ddd;
+
+    background:white;
+
+    font-size:18px;
+
+    margin-bottom:60px;
+
+    outline:none;
+
+}
+
+#searchInput:focus{
+
+    border-color:#111;
+
+}
