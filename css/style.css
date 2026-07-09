@@ -593,3 +593,40 @@ body{
 
     font-size:13px;
 }
+/* SHOP PAGE */
+
+.page-banner{
+
+    padding:90px 60px;
+
+    text-align:center;
+}
+
+.page-banner p{
+
+    letter-spacing:4px;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+
+    color:#888;
+}
+
+.page-banner h1{
+
+    font-size:72px;
+
+    font-weight:300;
+}
+
+.shop-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:35px;
+
+    padding:0 60px 120px;
+}
