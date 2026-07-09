@@ -366,3 +366,87 @@ body{
 
     margin-bottom:45px;
 }
+
+/* JOURNAL */
+
+.journal{
+
+    padding:120px 60px;
+}
+
+.journal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:60px;
+}
+
+.journal-header h2{
+
+    font-size:54px;
+
+    font-weight:300;
+
+    line-height:1.2;
+}
+
+.journal-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+}
+
+.journal-card{
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.journal-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.journal-card img{
+
+    width:100%;
+
+    aspect-ratio:4/5;
+
+    object-fit:cover;
+}
+
+.journal-content{
+
+    padding-top:22px;
+}
+
+.journal-content p{
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:#8b8175;
+
+    margin-bottom:12px;
+}
+
+.journal-content h3{
+
+    font-size:24px;
+
+    font-weight:300;
+
+    line-height:1.4;
+}
