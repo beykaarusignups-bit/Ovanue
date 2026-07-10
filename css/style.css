@@ -1195,3 +1195,42 @@ font-weight:300;
     cursor:pointer;
 
 }
+.product-gallery{
+
+    display:grid;
+
+    grid-template-columns:120px 1fr;
+
+    gap:25px;
+
+}
+
+.thumbnail-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.thumbnail{
+
+    width:100px;
+
+    height:120px;
+
+    object-fit:cover;
+
+    cursor:pointer;
+
+    border:1px solid #ddd;
+
+}
+
+.main-image img{
+
+    width:100%;
+
+}
