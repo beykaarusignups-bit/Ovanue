@@ -173,19 +173,19 @@ async function loadProducts() {
 
                 <td>
 
-                    <button class="edit-btn" data-id="${doc.id}">
+    <button class="edit-btn" data-id="${doc.id}">
+        Edit
+    </button>
 
-                        Edit
+    <button
+        class="delete-btn"
+        onclick="window.deleteProduct('${doc.id}')">
 
-                    </button>
+        Delete
 
-                    <button class="delete-btn" data-id="${doc.id}">
+    </button>
 
-                        Delete
-
-                    </button>
-
-                </td>
+</td>
 
             </tr>
 
@@ -221,3 +221,4 @@ async function deleteProduct(id){
     }
 
 }
+window.deleteProduct = deleteProduct;
