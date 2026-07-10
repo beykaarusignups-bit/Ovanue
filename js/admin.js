@@ -101,21 +101,23 @@ for(const file of files){
         
         const productData = {
 
-            name: productName.value.trim(),
+    name: productName.value.trim(),
 
-            brand: productBrand.value.trim(),
+    brand: productBrand.value.trim(),
 
-            category: productCategory.value,
+    category: productCategory.value,
 
-            price: Number(productPrice.value),
+    price: Number(productPrice.value),
 
-            stock: Number(productStock.value),
+    stock: Number(productStock.value),
 
-            description: productDescription.value.trim(),
+    description: productDescription.value.trim(),
 
-            featured: productFeatured.value === "true"
+    featured: productFeatured.value === "true",
 
-        };
+    images: imageUrls
+
+};
 
         if(editingProductId){
 
@@ -130,8 +132,8 @@ for(const file of files){
 
         else{
 
-            productData.images: imageUrls,
-
+productData.images = imageUrls;
+            
             productData.createdAt = serverTimestamp();
 
             await addDoc(
@@ -206,7 +208,7 @@ async function loadProducts() {
                <td>
 
 <img
-src="${product.images[0]}"
+src="${product.images?.[0] || 'assets/images/no-image.png'}"
 style="
 width:70px;
 height:90px;
@@ -215,7 +217,6 @@ border-radius:8px;
 ">
 
 </td>
-
                 <td>${product.name}</td>
 
                 <td>${product.brand}</td>
