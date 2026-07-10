@@ -975,3 +975,89 @@ font-size:42px;
 font-weight:300;
 
 }
+
+/* ADMIN PRODUCTS */
+
+.admin-section{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:8px;
+
+}
+
+.admin-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.admin-header h2{
+
+    font-size:30px;
+
+    font-weight:300;
+
+}
+
+.admin-header button{
+
+    background:#171311;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 24px;
+
+    cursor:pointer;
+
+    letter-spacing:2px;
+
+}
+
+.admin-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.admin-table th{
+
+    text-align:left;
+
+    border-bottom:1px solid #ddd;
+
+    padding:15px;
+
+    background:#f8f6f2;
+
+}
+
+.admin-table td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.admin-table img{
+
+    width:60px;
+
+    height:80px;
+
+    object-fit:cover;
+
+}
