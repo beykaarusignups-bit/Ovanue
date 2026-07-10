@@ -4,6 +4,8 @@ import {
     collection,
     addDoc,
     getDocs,
+    deleteDoc,
+    doc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -190,5 +192,32 @@ async function loadProducts() {
         `;
 
     });
+
+}
+async function deleteProduct(id){
+
+    const confirmDelete = confirm("Delete this product?");
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+    try{
+
+        await deleteDoc(doc(db,"products",id));
+
+        loadProducts();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 }
