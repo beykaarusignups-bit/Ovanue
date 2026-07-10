@@ -135,7 +135,6 @@ async function saveProduct(){
 
 }
 
-}
 
 // ======================
 // CLEAR FORM
