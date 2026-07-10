@@ -1,3 +1,11 @@
+import { storage } from "./firebase.js";
+
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
 let editingProductId = null;
 import { db } from "./firebase.js";
 
@@ -70,7 +78,26 @@ saveBtn.addEventListener("click", saveProduct);
 async function saveProduct(){
 
     try{
+let imageUrls = [];
 
+const files = productImages.files;
+
+for(const file of files){
+
+    const imageRef = ref(
+        storage,
+        "products/" + Date.now() + "_" + file.name
+    );
+
+    await uploadBytes(imageRef,file);
+
+    const url = await getDownloadURL(imageRef);
+
+    imageUrls.push(url);
+
+}
+
+        
         const productData = {
 
             name: productName.value.trim(),
@@ -102,7 +129,7 @@ async function saveProduct(){
 
         else{
 
-            productData.images = [];
+            productData.images: imageUrls,
 
             productData.createdAt = serverTimestamp();
 
@@ -175,7 +202,18 @@ async function loadProducts() {
 
             <tr>
 
-                <td>—</td>
+               <td>
+
+<img
+src="${product.images[0]}"
+style="
+width:70px;
+height:90px;
+object-fit:cover;
+border-radius:8px;
+">
+
+</td>
 
                 <td>${product.name}</td>
 
