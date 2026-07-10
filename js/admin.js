@@ -102,7 +102,9 @@ async function saveProduct() {
 
         clearForm();
 
-        modal.style.display = "none";
+modal.style.display = "none";
+
+loadProducts();
 
     }
 
