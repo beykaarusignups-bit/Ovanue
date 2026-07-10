@@ -1,28 +1,27 @@
 const modal = document.getElementById("productModal");
 
-document
-.getElementById("addProductBtn")
-.onclick = () => {
+const addBtn = document.getElementById("addProductBtn");
+
+const closeBtn = document.getElementById("closeModal");
+
+addBtn.addEventListener("click", () => {
 
     modal.style.display = "flex";
 
-};
+});
 
-document
-.getElementById("closeModal")
-.onclick = () => {
+closeBtn.addEventListener("click", () => {
 
     modal.style.display = "none";
 
-};
+});
 
-window.onclick = function(e){
+window.addEventListener("click", (e) => {
 
-    if(e.target === modal){
+    if (e.target === modal) {
 
         modal.style.display = "none";
 
     }
 
-};
-import "./productManager.js";
+});
