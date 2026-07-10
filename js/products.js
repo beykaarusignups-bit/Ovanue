@@ -1,61 +1,38 @@
-const products = [
+import { db } from "./firebase.js";
 
-    {
-        id:1,
-        brand:"CHARLES & KEITH",
-        name:"Elora Shoulder Bag",
-        price:"$139",
-        image:"assets/images/products/bag1.jpg"
-    },
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-    {
-        id:2,
-        brand:"ALDO",
-        name:"Structured Tote",
-        price:"$169",
-        image:"assets/images/products/bag2.jpg"
-    },
+const params = new URLSearchParams(window.location.search);
 
-    {
-        id:3,
-        brand:"STEVE MADDEN",
-        name:"Mini Crossbody",
-        price:"$125",
-        image:"assets/images/products/bag3.jpg"
-    },
+const productId = params.get("id");
 
-    {
-        id:4,
-        brand:"CHARLES & KEITH",
-        name:"Classic Top Handle",
-        price:"$149",
-        image:"assets/images/products/bag4.jpg"
+loadProduct();
+
+async function loadProduct(){
+
+    const snap = await getDoc(doc(db,"products",productId));
+
+    if(!snap.exists()){
+
+        alert("Product not found.");
+
+        return;
+
     }
 
-];
+    const product = snap.data();
 
-const grid = document.querySelector(".shop-grid");
+    document.getElementById("productImage").src = product.images[0];
 
-products.forEach(product=>{
+    document.getElementById("productBrand").textContent = product.brand;
 
-    grid.innerHTML += `
+    document.getElementById("productName").textContent = product.name;
 
-        <a href="product.html" class="product-card">
+    document.getElementById("productPrice").textContent = "$" + product.price;
 
-            <img src="${product.image}">
+    document.getElementById("productDescription").textContent = product.description;
 
-            <div class="product-info">
-
-                <p class="brand">${product.brand}</p>
-
-                <h3>${product.name}</h3>
-
-                <p class="price">${product.price}</p>
-
-            </div>
-
-        </a>
-
-    `;
-
-});
+}
