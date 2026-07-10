@@ -1,8 +1,27 @@
+const modal = document.getElementById("productModal");
 
 document
-.getElementById("loginBtn")
-.addEventListener("click", () => {
+.getElementById("addProductBtn")
+.onclick = () => {
 
-    alert("Firebase login will be connected in the next phase.");
+    modal.style.display = "flex";
 
-});
+};
+
+document
+.getElementById("closeModal")
+.onclick = () => {
+
+    modal.style.display = "none";
+
+};
+
+window.onclick = function(e){
+
+    if(e.target === modal){
+
+        modal.style.display = "none";
+
+    }
+
+};
