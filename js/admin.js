@@ -1,35 +1,100 @@
-import { db, storage } from "./firebase.js";
+import { db } from "./firebase.js";
 
-console.log("admin.js loaded");
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+// =====================
+// ELEMENTS
+// =====================
 
 const modal = document.getElementById("productModal");
+
 const addBtn = document.getElementById("addProductBtn");
 const closeBtn = document.getElementById("closeModal");
 const saveBtn = document.getElementById("saveProduct");
 
-console.log({
-    modal,
-    addBtn,
-    closeBtn,
-    saveBtn
-});
+const productName = document.getElementById("productName");
+const productBrand = document.getElementById("productBrand");
+const productCategory = document.getElementById("productCategory");
+const productPrice = document.getElementById("productPrice");
+const productStock = document.getElementById("productStock");
+const productDescription = document.getElementById("productDescription");
+const productFeatured = document.getElementById("productFeatured");
+const productImages = document.getElementById("productImages");
+
+// =====================
+// MODAL
+// =====================
 
 addBtn.addEventListener("click", () => {
-    console.log("Add Product clicked");
+
     modal.style.display = "flex";
+
 });
 
 closeBtn.addEventListener("click", () => {
+
     modal.style.display = "none";
+
 });
 
 window.addEventListener("click", (e) => {
+
     if (e.target === modal) {
+
         modal.style.display = "none";
+
     }
+
 });
 
-saveBtn.addEventListener("click", () => {
-    console.log("SAVE clicked");
-    alert("SAVE button works!");
-});
+// =====================
+// SAVE PRODUCT
+// =====================
+
+saveBtn.addEventListener("click", saveProduct);
+
+async function saveProduct() {
+
+    try {
+
+        if (
+            productName.value.trim() === "" ||
+            productBrand.value.trim() === "" ||
+            productPrice.value === ""
+        ) {
+
+            alert("Please fill in all required fields.");
+
+            return;
+
+        }
+
+        await addDoc(collection(db, "products"), {
+
+            name: productName.value,
+
+            brand: productBrand.value,
+
+            category: productCategory.value,
+
+            price: Number(productPrice.value),
+
+            stock: Number(productStock.value),
+
+            description: productDescription.value,
+
+            featured: productFeatured.value === "true",
+
+            images: [],
+
+            createdAt: serverTimestamp()
+
+        });
+
+        alert("Product saved successfully!");
+
+        // Clear Form
