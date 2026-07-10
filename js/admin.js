@@ -1,4 +1,16 @@
-import { storage } from "./firebase.js";
+import { db, storage } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    updateDoc,
+    getDoc,
+    setDoc,
+    doc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import {
     ref,
@@ -6,16 +18,7 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 
-import {
-    doc,
-    getDoc,
-    setDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
 let editingProductId = null;
-import { db } from "./firebase.js";
-
-
 
 import {
     collection,
@@ -330,31 +333,44 @@ async function editProduct(id){
 }
 window.editProduct = editProduct;
 
-loadHomepage();
+// ======================
+// HOMEPAGE
+// ======================
 
-async function loadHomepage() {
+if (saveHomepageBtn) {
 
-    const snap = await getDoc(doc(db, "homepage", "content"));
+    loadHomepage();
 
-    if (!snap.exists()) return;
-
-    const data = snap.data();
-
-    homeAnnouncement.value = data.announcement || "";
-
-    homeSubtitle.value = data.heroSubtitle || "";
-
-    homeTitle.value = data.heroTitle || "";
-
-    homeDescription.value = data.heroDescription || "";
-
-    homeButton.value = data.heroButton || "";
-
-    homeButtonLink.value = data.heroLink || "";
+    saveHomepageBtn.addEventListener("click", saveHomepage);
 
 }
 
-saveHomepageBtn.addEventListener("click", saveHomepage);
+async function loadHomepage() {
+
+    try {
+
+        const snap = await getDoc(doc(db, "homepage", "content"));
+
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        homeAnnouncement.value = data.announcement || "";
+        homeSubtitle.value = data.heroSubtitle || "";
+        homeTitle.value = data.heroTitle || "";
+        homeDescription.value = data.heroDescription || "";
+        homeButton.value = data.heroButton || "";
+        homeButtonLink.value = data.heroLink || "";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 
 async function saveHomepage() {
 
@@ -376,7 +392,7 @@ async function saveHomepage() {
 
             const imageRef = ref(
                 storage,
-                "homepage/" + file.name
+                "homepage/" + Date.now() + "_" + file.name
             );
 
             await uploadBytes(imageRef, file);
