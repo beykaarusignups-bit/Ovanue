@@ -1,17 +1,21 @@
 import { db, storage } from "./firebase.js";
 
-import {
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+console.log("admin.js loaded");
 
 const modal = document.getElementById("productModal");
 const addBtn = document.getElementById("addProductBtn");
 const closeBtn = document.getElementById("closeModal");
 const saveBtn = document.getElementById("saveProduct");
 
+console.log({
+    modal,
+    addBtn,
+    closeBtn,
+    saveBtn
+});
+
 addBtn.addEventListener("click", () => {
+    console.log("Add Product clicked");
     modal.style.display = "flex";
 });
 
@@ -26,5 +30,6 @@ window.addEventListener("click", (e) => {
 });
 
 saveBtn.addEventListener("click", () => {
-    alert("Save button connected successfully.");
+    console.log("SAVE clicked");
+    alert("SAVE button works!");
 });
