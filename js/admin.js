@@ -6,6 +6,12 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 
+import {
+    doc,
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 let editingProductId = null;
 import { db } from "./firebase.js";
 
@@ -43,7 +49,21 @@ const productDescription = document.getElementById("productDescription");
 const productFeatured = document.getElementById("productFeatured");
 const productImages = document.getElementById("productImages");
 const productTable = document.getElementById("productTable");
+const homeAnnouncement = document.getElementById("homeAnnouncement");
 
+const homeSubtitle = document.getElementById("homeSubtitle");
+
+const homeTitle = document.getElementById("homeTitle");
+
+const homeDescription = document.getElementById("homeDescription");
+
+const homeButton = document.getElementById("homeButton");
+
+const homeButtonLink = document.getElementById("homeButtonLink");
+
+const homeImage = document.getElementById("homeImage");
+
+const saveHomepageBtn = document.getElementById("saveHomepage");
 // ======================
 // MODAL
 // ======================
@@ -309,3 +329,90 @@ async function editProduct(id){
 
 }
 window.editProduct = editProduct;
+
+loadHomepage();
+
+async function loadHomepage() {
+
+    const snap = await getDoc(doc(db, "homepage", "content"));
+
+    if (!snap.exists()) return;
+
+    const data = snap.data();
+
+    homeAnnouncement.value = data.announcement || "";
+
+    homeSubtitle.value = data.heroSubtitle || "";
+
+    homeTitle.value = data.heroTitle || "";
+
+    homeDescription.value = data.heroDescription || "";
+
+    homeButton.value = data.heroButton || "";
+
+    homeButtonLink.value = data.heroLink || "";
+
+}
+
+saveHomepageBtn.addEventListener("click", saveHomepage);
+
+async function saveHomepage() {
+
+    try {
+
+        let heroImageUrl = "";
+
+        const current = await getDoc(doc(db, "homepage", "content"));
+
+        if (current.exists()) {
+
+            heroImageUrl = current.data().heroImage || "";
+
+        }
+
+        if (homeImage.files.length > 0) {
+
+            const file = homeImage.files[0];
+
+            const imageRef = ref(
+                storage,
+                "homepage/" + file.name
+            );
+
+            await uploadBytes(imageRef, file);
+
+            heroImageUrl = await getDownloadURL(imageRef);
+
+        }
+
+        await setDoc(doc(db, "homepage", "content"), {
+
+            announcement: homeAnnouncement.value,
+
+            heroSubtitle: homeSubtitle.value,
+
+            heroTitle: homeTitle.value,
+
+            heroDescription: homeDescription.value,
+
+            heroButton: homeButton.value,
+
+            heroLink: homeButtonLink.value,
+
+            heroImage: heroImageUrl
+
+        });
+
+        alert("Homepage Updated!");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+}
