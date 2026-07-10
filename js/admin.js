@@ -25,3 +25,4 @@ window.onclick = function(e){
     }
 
 };
+import "./productManager.js";
