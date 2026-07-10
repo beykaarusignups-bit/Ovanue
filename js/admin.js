@@ -3,8 +3,10 @@ import { db } from "./firebase.js";
 import {
     collection,
     addDoc,
+    getDocs,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 
 // ======================
 // ELEMENTS
@@ -24,6 +26,7 @@ const productStock = document.getElementById("productStock");
 const productDescription = document.getElementById("productDescription");
 const productFeatured = document.getElementById("productFeatured");
 const productImages = document.getElementById("productImages");
+const productTable = document.getElementById("productTable");
 
 // ======================
 // MODAL
@@ -134,5 +137,56 @@ function clearForm(){
     productFeatured.value = "false";
 
     productImages.value = "";
+
+}
+loadProducts();
+
+async function loadProducts() {
+
+    productTable.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    snapshot.forEach((doc) => {
+
+        const product = doc.data();
+
+        productTable.innerHTML += `
+
+            <tr>
+
+                <td>—</td>
+
+                <td>${product.name}</td>
+
+                <td>${product.brand}</td>
+
+                <td>${product.category}</td>
+
+                <td>$${product.price}</td>
+
+                <td>${product.stock}</td>
+
+                <td>
+
+                    <button class="edit-btn" data-id="${doc.id}">
+
+                        Edit
+
+                    </button>
+
+                    <button class="delete-btn" data-id="${doc.id}">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
 
 }
