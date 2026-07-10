@@ -1,3 +1,4 @@
+let editingProductId = null;
 import { db } from "./firebase.js";
 
 import {
@@ -5,9 +6,12 @@ import {
     addDoc,
     getDocs,
     deleteDoc,
+    updateDoc,
+    getDoc,
     doc,
     serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
 // ======================
@@ -62,23 +66,11 @@ window.addEventListener("click", (e) => {
 
 saveBtn.addEventListener("click", saveProduct);
 
-async function saveProduct() {
+async function saveProduct(){
 
-    try {
+    try{
 
-        if (
-            productName.value.trim() === "" ||
-            productBrand.value.trim() === "" ||
-            productPrice.value.trim() === ""
-        ) {
-
-            alert("Please fill in the required fields.");
-
-            return;
-
-        }
-
-        await addDoc(collection(db, "products"), {
+        const productData = {
 
             name: productName.value.trim(),
 
@@ -92,21 +84,43 @@ async function saveProduct() {
 
             description: productDescription.value.trim(),
 
-            featured: productFeatured.value === "true",
+            featured: productFeatured.value === "true"
 
-            images: [],
+        };
 
-            createdAt: serverTimestamp()
+        if(editingProductId){
 
-        });
+            await updateDoc(
+                doc(db,"products",editingProductId),
+                productData
+            );
 
-        alert("Product added successfully!");
+            alert("Product Updated!");
+
+        }
+
+        else{
+
+            productData.images = [];
+
+            productData.createdAt = serverTimestamp();
+
+            await addDoc(
+                collection(db,"products"),
+                productData
+            );
+
+            alert("Product Added!");
+
+        }
+
+        editingProductId = null;
 
         clearForm();
 
-modal.style.display = "none";
+        modal.style.display = "none";
 
-loadProducts();
+        loadProducts();
 
     }
 
@@ -117,6 +131,8 @@ loadProducts();
         alert(error.message);
 
     }
+
+}
 
 }
 
@@ -173,9 +189,10 @@ async function loadProducts() {
 
                 <td>
 
-    <button class="edit-btn" data-id="${doc.id}">
-        Edit
-    </button>
+   <button
+onclick="window.editProduct('${doc.id}')">
+Edit
+</button>
 
     <button
         class="delete-btn"
@@ -222,3 +239,33 @@ async function deleteProduct(id){
 
 }
 window.deleteProduct = deleteProduct;
+
+async function editProduct(id){
+
+    const snap = await getDoc(
+        doc(db,"products",id)
+    );
+
+    const product = snap.data();
+
+    editingProductId = id;
+
+    productName.value = product.name;
+
+    productBrand.value = product.brand;
+
+    productCategory.value = product.category;
+
+    productPrice.value = product.price;
+
+    productStock.value = product.stock;
+
+    productDescription.value = product.description;
+
+    productFeatured.value =
+        product.featured.toString();
+
+    modal.style.display = "flex";
+
+}
+window.editProduct = editProduct;
