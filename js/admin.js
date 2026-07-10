@@ -2,8 +2,13 @@ import { db } from "./firebase.js";
 
 import {
     collection,
-    addDoc
+    addDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+// ======================
+// ELEMENTS
+// ======================
 
 const modal = document.getElementById("productModal");
 
@@ -12,8 +17,17 @@ const closeBtn = document.getElementById("closeModal");
 const saveBtn = document.getElementById("saveProduct");
 
 const productName = document.getElementById("productName");
+const productBrand = document.getElementById("productBrand");
+const productCategory = document.getElementById("productCategory");
+const productPrice = document.getElementById("productPrice");
+const productStock = document.getElementById("productStock");
+const productDescription = document.getElementById("productDescription");
+const productFeatured = document.getElementById("productFeatured");
+const productImages = document.getElementById("productImages");
 
-// Modal
+// ======================
+// MODAL
+// ======================
 
 addBtn.addEventListener("click", () => {
 
@@ -37,19 +51,55 @@ window.addEventListener("click", (e) => {
 
 });
 
-// Test Save
+// ======================
+// SAVE PRODUCT
+// ======================
 
-saveBtn.addEventListener("click", async () => {
+saveBtn.addEventListener("click", saveProduct);
+
+async function saveProduct() {
 
     try {
 
-        await addDoc(collection(db, "test"), {
+        if (
+            productName.value.trim() === "" ||
+            productBrand.value.trim() === "" ||
+            productPrice.value.trim() === ""
+        ) {
 
-            name: productName.value
+            alert("Please fill in the required fields.");
+
+            return;
+
+        }
+
+        await addDoc(collection(db, "products"), {
+
+            name: productName.value.trim(),
+
+            brand: productBrand.value.trim(),
+
+            category: productCategory.value,
+
+            price: Number(productPrice.value),
+
+            stock: Number(productStock.value),
+
+            description: productDescription.value.trim(),
+
+            featured: productFeatured.value === "true",
+
+            images: [],
+
+            createdAt: serverTimestamp()
 
         });
 
-        alert("Firestore Connected!");
+        alert("Product added successfully!");
+
+        clearForm();
+
+        modal.style.display = "none";
 
     }
 
@@ -61,4 +111,28 @@ saveBtn.addEventListener("click", async () => {
 
     }
 
-});
+}
+
+// ======================
+// CLEAR FORM
+// ======================
+
+function clearForm(){
+
+    productName.value = "";
+
+    productBrand.value = "";
+
+    productCategory.selectedIndex = 0;
+
+    productPrice.value = "";
+
+    productStock.value = "";
+
+    productDescription.value = "";
+
+    productFeatured.value = "false";
+
+    productImages.value = "";
+
+}
