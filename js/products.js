@@ -25,14 +25,48 @@ async function loadProduct(){
 
     const product = snap.data();
 
-    document.getElementById("productImage").src = product.images[0];
+   document.getElementById("productImage").src =
+product.images[0];
 
-    document.getElementById("productBrand").textContent = product.brand;
+document.getElementById("productBrand").textContent =
+product.brand;
 
-    document.getElementById("productName").textContent = product.name;
+document.getElementById("productName").textContent =
+product.name;
 
-    document.getElementById("productPrice").textContent = "$" + product.price;
+document.getElementById("productPrice").textContent =
+"$" + product.price;
 
-    document.getElementById("productDescription").textContent = product.description;
+document.getElementById("productDescription").textContent =
+product.description;
+
+const thumbnails =
+document.getElementById("thumbnailContainer");
+
+thumbnails.innerHTML = "";
+
+product.images.forEach(image=>{
+
+    thumbnails.innerHTML += `
+
+        <img
+
+        src="${image}"
+
+        class="thumbnail"
+
+        onclick="changeImage('${image}')">
+
+    `;
+
+});
+
+}
+
+window.changeImage = function(image){
+
+    document
+    .getElementById("productImage")
+    .src = image;
 
 }
