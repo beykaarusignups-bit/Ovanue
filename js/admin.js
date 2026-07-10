@@ -165,7 +165,7 @@ for(const file of files){
 
 
 // ======================
-// CLEAR FORM
+// CLEAR FORM details
 // ======================
 
 function clearForm(){
