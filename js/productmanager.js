@@ -1,69 +1,31 @@
-import { db, storage } from "./firebase.js";
-
-import {
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-import {
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
-
-const saveBtn = document.getElementById("saveProduct");
-
-const productName = document.getElementById("productName");
-
-const productBrand = document.getElementById("productBrand");
-
-const productCategory = document.getElementById("productCategory");
-
-const productPrice = document.getElementById("productPrice");
-
-const productStock = document.getElementById("productStock");
-
-const productDescription = document.getElementById("productDescription");
-
-const productFeatured = document.getElementById("productFeatured");
-
-const productImages = document.getElementById("productImages");
-
-saveBtn.addEventListener("click", saveProduct);
-
-async function saveProduct(){
-
-    alert("Save button connected successfully.");
-
-}
-
-// Modal
+console.log("Loaded");
 
 const modal = document.getElementById("productModal");
+const addBtn = document.getElementById("addProductBtn");
+const closeBtn = document.getElementById("closeModal");
 
-const addProductBtn = document.getElementById("addProductBtn");
+console.log(modal);
+console.log(addBtn);
+console.log(closeBtn);
 
-const closeModalBtn = document.getElementById("closeModal");
-
-addProductBtn.addEventListener("click", () => {
+addBtn.onclick = () => {
 
     modal.style.display = "flex";
 
-});
+};
 
-closeModalBtn.addEventListener("click", () => {
+closeBtn.onclick = () => {
 
     modal.style.display = "none";
 
-});
+};
 
-window.addEventListener("click", (e) => {
+window.onclick = (e) => {
 
-    if (e.target === modal) {
+    if(e.target === modal){
 
         modal.style.display = "none";
 
     }
 
-});
+};
